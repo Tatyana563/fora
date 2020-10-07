@@ -36,7 +36,6 @@ public class SectionParser {
     private static final Set<String> SECTIONS = Set.of("Ноутбуки, компьютеры", "Комплектующие", "Оргтехника", "Смартфоны, планшеты", " Телевизоры, аудио, видео",
             "Техника для дома", "Техника для кухни", "Фото и видео");
 
-    private static final Set<String> GROUPS_EXCEPTIONS = Set.of("Купить дешевле");
     private static final String URL = "https://fora.kz/";
 
     private static final long ONE_SECOND_MS = 1000L;
@@ -46,9 +45,9 @@ public class SectionParser {
     private static final long ONE_WEEK_MS = 7 * ONE_DAY_MS;
 
 
-    @Value("${sulpak.api.chunk-size}")
+    @Value("${fora.api.chunk-size}")
     private Integer chunkSize;
-    @Value("${sulpak.thread-pool.pool-size}")
+    @Value("${fora.thread-pool.pool-size}")
     private Integer threadPoolSize;
     @Autowired
     private SectionRepository sectionRepository;
@@ -63,7 +62,6 @@ public class SectionParser {
     @Scheduled(fixedDelay = ONE_WEEK_MS)
     @Transactional
     public void getSections() throws IOException {
-        Instant start = Instant.now();
         Document newsPage = Jsoup.connect(URL).get();
         LOG.info("Получили главную страницу, ищем секции...");
         Elements sectionElements = newsPage.select("#js-categories-menu>li");
@@ -88,8 +86,7 @@ public class SectionParser {
                         processGroupWithCategories(section, currentGroup, categories);
                         currentGroup = element;
                         categories.clear();
-                     }
-                    else {
+                    } else {
                         // element is category
                         categories.add(element);
                     }
@@ -107,28 +104,26 @@ public class SectionParser {
         String groupUrl = groupLink.absUrl("href");
         String groupText = groupLink.text();
         LOG.info("Группа  {}", groupText);
-        if (!GROUPS_EXCEPTIONS.contains(groupText)) {
-            MainGroup group = mainGroupRepository.findOneByUrl(groupUrl)
-                    .orElseGet(() -> mainGroupRepository.save(new MainGroup(groupText, groupUrl, section)));
-            if (categories.isEmpty()) {
-                if (!categoryRepository.existsByUrl(groupUrl)) {
-                    categoryRepository.save(new Category(groupText, groupUrl, group));
-                }
+        MainGroup group = mainGroupRepository.findOneByUrl(groupUrl)
+                .orElseGet(() -> mainGroupRepository.save(new MainGroup(groupText, groupUrl, section)));
+        if (categories.isEmpty()) {
+            if (!categoryRepository.existsByUrl(groupUrl)) {
+                categoryRepository.save(new Category(groupText, groupUrl, group));
             }
-            else {
-                for (Element categoryElement : categories) {
-                    Element categoryLink = categoryElement.selectFirst(">a");
-                    String categoryUrl = categoryLink.absUrl("href");
-                    String categoryText = categoryLink.text();
-                    LOG.info("\tКатегория  {}", categoryText);
-                    if (!categoryRepository.existsByUrl(categoryUrl)) {
-                        categoryRepository.save(new Category(categoryText, categoryUrl, group));
-                    }
-
+        } else {
+            for (Element categoryElement : categories) {
+                Element categoryLink = categoryElement.selectFirst(">a");
+                String categoryUrl = categoryLink.absUrl("href");
+                String categoryText = categoryLink.text();
+                LOG.info("\tКатегория  {}", categoryText);
+                if (!categoryRepository.existsByUrl(categoryUrl)) {
+                    categoryRepository.save(new Category(categoryText, categoryUrl, group));
                 }
+
             }
         }
     }
+
 
     @Scheduled(initialDelay = 1200, fixedDelay = ONE_WEEK_MS)
     @Transactional
