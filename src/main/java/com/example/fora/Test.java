@@ -12,13 +12,14 @@ import java.util.regex.Pattern;
 public class Test {
     private static final Pattern PATTERN = Pattern.compile("(.*)(Артикул:)(\\s*)(\\S*)(\\s*)(\\.*)");
     private static final Pattern PRICE_PATTERN = Pattern.compile("(\\d*\\s*\\d*\\s*\\d*\\s*\\d*\\s*\\d*\\s*\\d*)");
-    private static final Pattern QUANTITY_PATTERN = Pattern.compile("(\\D*)(\\s*)(\\D*)(\\d*)");
+    //private static final Pattern QUANTITY_PATTERN = Pattern.compile("(\\D*)(\\s*)(\\D*)(\\d*)");
+    private static final Pattern QUANTITY_PATTERN = Pattern.compile("(\\d+)");
     private static final Integer PRODUCTS_PER_PAGE = 18;
 
     public static void main(String[] args) throws IOException {
 
 
-        Document itemPage = Jsoup.connect("https://fora.kz/catalog/posuda-dla-kuhni/gusatnicy/aktobe").get();
+        Document itemPage = Jsoup.connect("https://fora.kz/catalog/smartfony-plansety/smartfony/karaganda").get();
         Elements itemElements = itemPage.select(".catalog-container");
         for (Element itemElement : itemElements) {
             String quantity = itemElement.select(".product-quantity").text();
@@ -27,7 +28,7 @@ public class Test {
             Integer numberOfProductsPerPage = 18;
             Matcher matcher = QUANTITY_PATTERN.matcher(quantity);
             if (matcher.find()) {
-                amountOfProducts = Integer.valueOf(matcher.group(4));
+                amountOfProducts = Integer.valueOf(matcher.group(1));
                 amountOfProducts = 200;
                 int main = amountOfProducts / 18;
 

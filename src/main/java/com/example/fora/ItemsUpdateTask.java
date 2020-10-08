@@ -26,10 +26,10 @@ public class ItemsUpdateTask implements Runnable {
 
 
     private static final String PAGE_URL_CONSTANT = "?sort=views&page=%d";
-    private static final Integer numberOfProductsPerPage = 18;
+    private static final Integer NUMBER_OF_PRODUCTS_PER_PAGE = 18;
     private static final Pattern PATTERN = Pattern.compile("Артикул:\\s*(\\S*)");
-    private static final Pattern PRICE_PATTERN = Pattern.compile("(\\d*\\s*\\d*\\s*\\d*\\s*\\d*\\s*\\d*\\s*\\d*)");
-    private static final Pattern QUANTITY_PATTERN = Pattern.compile("(\\D*)(\\s*)(\\D*)(\\d*)");
+    private static final Pattern PRICE_PATTERN = Pattern.compile("(^([0-9]+\\s*)*)");
+    private static final Pattern QUANTITY_PATTERN = Pattern.compile("(\\d+)");
 
     public ItemsUpdateTask(ItemRepository itemRepository, Category category, CountDownLatch latch) {
         this.itemRepository = itemRepository;
@@ -46,15 +46,15 @@ public class ItemsUpdateTask implements Runnable {
             String firstPageUrl = String.format(categoryUrl + PAGE_URL_CONSTANT, 1);
 
             Document firstPage = Jsoup.connect(firstPageUrl).get();
+            if (firstPage != null) {
+                int totalPages = getTotalPages(firstPage);
+                parseItems(firstPage);
+                for (int i = 2; i <= totalPages; i++) {
+                    LOG.info("Получаем список товаров - страница {}", i);
+                    parseItems(Jsoup.connect(String.format(categoryUrl + PAGE_URL_CONSTANT, i)).get());
 
-            int totalPages = getTotalPages(firstPage);
-            parseItems(firstPage);
-            for (int i = 2; i <= totalPages; i++) {
-                LOG.info("Получаем список товаров - страница {}", i);
-                parseItems(Jsoup.connect(String.format(categoryUrl + PAGE_URL_CONSTANT, i)).get());
-
+                }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -64,20 +64,21 @@ public class ItemsUpdateTask implements Runnable {
 
     private int getTotalPages(Document firstPage) {
         //TODO: complete implementation
-        Elements itemElements = firstPage.select(".catalog-container");
-        Integer numberofPages = null;
-        for (Element itemElement : itemElements) {
+        Element itemElement = firstPage.selectFirst(".catalog-container");
+        if(itemElement!=null) {
+            Integer numberofPages = null;
+
             String quantity = itemElement.select(".product-quantity").text();
             Integer amountOfProducts;
 
 
             Matcher matcher = QUANTITY_PATTERN.matcher(quantity);
             if (matcher.find()) {
-                amountOfProducts = Integer.valueOf(matcher.group(4));
+                amountOfProducts = Integer.valueOf(matcher.group(1));
 
-                int main = amountOfProducts / numberOfProductsPerPage;
+                int main = amountOfProducts / NUMBER_OF_PRODUCTS_PER_PAGE;
                 if (main != 0) {
-                    if ((amountOfProducts % numberOfProductsPerPage != 0)) {
+                    if ((amountOfProducts % NUMBER_OF_PRODUCTS_PER_PAGE != 0)) {
                         numberofPages = main + 1;
                     } else {
                         numberofPages = main;
@@ -86,9 +87,8 @@ public class ItemsUpdateTask implements Runnable {
                     numberofPages = 1;
                 }
             }
-
-        }
-        return numberofPages;
+            return numberofPages;
+        } else return 0;
     }
 
 
@@ -106,7 +106,8 @@ public class ItemsUpdateTask implements Runnable {
             String price = null;
             Matcher priceMatcher = PRICE_PATTERN.matcher(itemPrice);
             if (priceMatcher.find()) {
-                price = priceMatcher.group(1).replaceAll("\\s*", "");
+                price = priceMatcher.group(0).replaceAll("\\s*", "");
+                ;
             }
             String itemDescription = itemElement.selectFirst(".list-unstyled").text();
             Matcher matcher = PATTERN.matcher(itemDescription);
