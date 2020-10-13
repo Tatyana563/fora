@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item,Integer> {
-    Optional<Item> findOneByCode(String code);
+    Optional<Item> findOneByExternalId(String externalId);
 
     @Modifying
     @Transactional

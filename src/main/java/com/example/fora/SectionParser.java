@@ -1,6 +1,7 @@
 package com.example.fora;
 
 import com.example.fora.model.Category;
+import com.example.fora.model.City;
 import com.example.fora.model.MainGroup;
 import com.example.fora.model.Section;
 import com.example.fora.repository.CategoryRepository;
@@ -33,8 +34,8 @@ import java.util.concurrent.Executors;
 public class SectionParser {
     private static final Logger LOG = LoggerFactory.getLogger(SectionParser.class);
 
-    private static final Set<String> SECTIONS = Set.of("Ноутбуки, компьютеры", "Комплектующие", "Оргтехника", "Смартфоны, планшеты", " Телевизоры, аудио, видео",
-            "Техника для дома", "Техника для кухни", "Фото и видео");
+    private static final Set<String> SECTIONS = Set.of("Ноутбуки, компьютеры", "Комплектующие", "Оргтехника", "Смартфоны, планшеты",
+            "Телевизоры, аудио, видео","Техника для дома", "Техника для кухни", "Фото и видео");
 
     private static final String URL = "https://fora.kz/";
 
@@ -70,6 +71,7 @@ public class SectionParser {
             String text = sectionElementLink.text();
             if (SECTIONS.contains(text)) {
                 LOG.info("Получаем {}...", text);
+                //TODO:remove city suffix from url (lastIndexOf('/'))
                 String sectionUrl = sectionElementLink.absUrl("href");
                 Section section = sectionRepository.findOneByUrl(sectionUrl)
                         .orElseGet(() -> sectionRepository.save(new Section(text, sectionUrl)));
@@ -94,6 +96,11 @@ public class SectionParser {
                 processGroupWithCategories(section, currentGroup, categories);
             }
         }
+        parseCities(newsPage);
+    }
+
+    private void parseCities(Document page) {
+        //TODO: parse and save cities
     }
 
     private void processGroupWithCategories(Section section, Element currentGroup, List<Element> categories) {
@@ -101,6 +108,7 @@ public class SectionParser {
             return;
         }
         Element groupLink = currentGroup.selectFirst(">a");
+        //TODO:remove city suffix from url (lastIndexOf('/'))
         String groupUrl = groupLink.absUrl("href");
         String groupText = groupLink.text();
         LOG.info("Группа  {}", groupText);
@@ -113,6 +121,7 @@ public class SectionParser {
         } else {
             for (Element categoryElement : categories) {
                 Element categoryLink = categoryElement.selectFirst(">a");
+                //TODO:remove city suffix from url (lastIndexOf('/'))
                 String categoryUrl = categoryLink.absUrl("href");
                 String categoryText = categoryLink.text();
                 LOG.info("\tКатегория  {}", categoryText);
@@ -136,11 +145,13 @@ public class SectionParser {
         // 1. offset + limit
         // 2. page + pageSize
         //   offset = page * pageSize;  limit = pageSize;
+        //TODO: get cities from repository
+        List<City> cities = null;
         while (!(categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize))).isEmpty()) {
             LOG.info("Получили из базы {} категорий", categories.size());
             CountDownLatch latch = new CountDownLatch(categories.size());
             for (Category category : categories) {
-                executorService.execute(new ItemsUpdateTask(itemRepository, category, latch));
+                executorService.execute(new ItemsUpdateTask(itemRepository, category, cities, latch));
             }
             LOG.info("Задачи запущены, ожидаем завершения выполнения...");
             latch.await();

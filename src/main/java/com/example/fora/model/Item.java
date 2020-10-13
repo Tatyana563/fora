@@ -9,11 +9,13 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String model;
-    private Double price;
     private String code;
-    private Boolean available;
+    @Column(nullable = false)
+    private String externalId;
     private String image;
+    @Column(nullable = false)
     private String url;
     @Column(columnDefinition = "text")
     private String description;
@@ -21,18 +23,8 @@ public class Item {
     @ManyToOne
     private Category category;
 
-    public Item(String model, Double price, String code, Boolean available, String image, String url, String description) {
-        this.model = model;
-        this.price = price;
-        this.code = code;
-        this.available = available;
-        this.image = image;
-        this.url = url;
-        this.description = description;
-    }
-
-    public Item(String code) {
-        this.code = code;
+    public Item(String externalId) {
+        this.externalId = externalId;
     }
 
     public Item() {
@@ -54,28 +46,12 @@ public class Item {
         this.model = model;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public Boolean getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Boolean available) {
-        this.available = available;
     }
 
     public String getImage() {
@@ -108,5 +84,13 @@ public class Item {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(String externalId) {
+        this.externalId = externalId;
     }
 }
