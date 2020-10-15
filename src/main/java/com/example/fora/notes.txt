@@ -6,4 +6,4 @@ sections categories logic
 
 
 PROBLEMS:
-1 cant parse city name, strange url
+1 cant parse city name, fully understand npe

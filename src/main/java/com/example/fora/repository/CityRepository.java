@@ -13,6 +13,6 @@ import java.util.Optional;
 public interface CityRepository extends JpaRepository<City,Integer> {
     boolean existsByUrlSuffix(String urlSuffix);
 
-    @Query("select name from City")
+    @Query("select urlSuffix from City")
     List<String> getAllCities();
 }

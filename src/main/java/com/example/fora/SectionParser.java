@@ -72,8 +72,10 @@ public class SectionParser {
                 LOG.info("Получаем {}...", text);
                 //TODO:remove city suffix from url (lastIndexOf('/'))
                 String sectionUrl = sectionElementLink.absUrl("href");
-                Section section = sectionRepository.findOneByUrl(sectionUrl)
-                        .orElseGet(() -> sectionRepository.save(new Section(text, sectionUrl)));
+                int index = sectionUrl.lastIndexOf("/");
+                String sectionUrlWithoutCity= sectionUrl.substring(0,index);
+                Section section = sectionRepository.findOneByUrl(sectionUrlWithoutCity)
+                        .orElseGet(() -> sectionRepository.save(new Section(text, sectionUrlWithoutCity)));
                 LOG.info("Получили {}, ищем группы...", text);
                 Elements groupsAndCategories = sectionElement.select(".category-submenu li");
                 Element currentGroup = null;
@@ -104,7 +106,6 @@ public class SectionParser {
         Elements cityElements = page.select(".js-city-select-radio");
         for (Element cityElement : cityElements) {
             String citySuffix = cityElement.attr("data-href").replace("/", "");
-          //  String cityname =
             if (!cityRepository.existsByUrlSuffix(citySuffix)) {
                cityRepository.save(new City(null,citySuffix));
             }
@@ -118,24 +119,30 @@ public class SectionParser {
         }
         Element groupLink = currentGroup.selectFirst(">a");
         //TODO:remove city suffix from url (lastIndexOf('/'))
+
         String groupUrl = groupLink.absUrl("href");
         String groupText = groupLink.text();
+        int index = groupUrl.lastIndexOf("/");
+        String groupUrlWithoutCity= groupUrl.substring(0,index);
         LOG.info("Группа  {}", groupText);
-        MainGroup group = mainGroupRepository.findOneByUrl(groupUrl)
-                .orElseGet(() -> mainGroupRepository.save(new MainGroup(groupText, groupUrl, section)));
+        MainGroup group = mainGroupRepository.findOneByUrl(groupUrlWithoutCity)
+                .orElseGet(() -> mainGroupRepository.save(new MainGroup(groupText, groupUrlWithoutCity, section)));
         if (categories.isEmpty()) {
             if (!categoryRepository.existsByUrl(groupUrl)) {
-                categoryRepository.save(new Category(groupText, groupUrl, group));
+                categoryRepository.save(new Category(groupText, groupUrlWithoutCity, group));
             }
         } else {
             for (Element categoryElement : categories) {
                 Element categoryLink = categoryElement.selectFirst(">a");
                 //TODO:remove city suffix from url (lastIndexOf('/'))
+
                 String categoryUrl = categoryLink.absUrl("href");
+                int index2 = categoryUrl.lastIndexOf("/");
+                String categoryUrlWithoutCity= categoryUrl.substring(0,index2);
                 String categoryText = categoryLink.text();
                 LOG.info("\tКатегория  {}", categoryText);
-                if (!categoryRepository.existsByUrl(categoryUrl)) {
-                    categoryRepository.save(new Category(categoryText, categoryUrl, group));
+                if (!categoryRepository.existsByUrl(categoryUrlWithoutCity)) {
+                    categoryRepository.save(new Category(categoryText, categoryUrlWithoutCity, group));
                 }
 
             }
@@ -154,8 +161,7 @@ public class SectionParser {
         // 1. offset + limit
         // 2. page + pageSize
         //   offset = page * pageSize;  limit = pageSize;
-        //TODO: get cities from repository
-        List<City> cities = null;
+        List<String> cities = cityRepository.getAllCities();
         while (!(categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize))).isEmpty()) {
             LOG.info("Получили из базы {} категорий", categories.size());
             CountDownLatch latch = new CountDownLatch(categories.size());

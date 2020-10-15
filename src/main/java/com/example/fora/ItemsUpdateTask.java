@@ -27,7 +27,7 @@ public class ItemsUpdateTask implements Runnable {
     private final ItemRepository itemRepository;
     private final Category category;
     //TODO: make decision single task -> single city or List.
-    private final List<City> cities;
+    private final List<String> cities;
     private final CountDownLatch latch;
     @Autowired
     private CityRepository cityRepository;
@@ -38,13 +38,12 @@ public class ItemsUpdateTask implements Runnable {
     private static final Pattern PRICE_PATTERN = Pattern.compile("(^([0-9]+\\s*)*)");
     private static final Pattern QUANTITY_PATTERN = Pattern.compile("(\\d+)");
 
-    public ItemsUpdateTask(ItemRepository itemRepository, Category category, List<City> cities, CountDownLatch latch) {
+    public ItemsUpdateTask(ItemRepository itemRepository, Category category, List<String> cities, CountDownLatch latch) {
         this.itemRepository = itemRepository;
         this.category = category;
         this.cities = cities;
         this.latch = latch;
     }
-
 
     @Override
     public void run() {
@@ -53,11 +52,11 @@ public class ItemsUpdateTask implements Runnable {
             String categoryUrl = category.getUrl();
             //TODO: iterate over cities
             //TODO: categoryUrl + city + page params
-        List<String> allCities= cityRepository.getAllCities();
-            for(int i=0;i<allCities.size();i++) {
 
+            for(int i=0;i<cities.size();i++) {
 
-                String firstPageUrl = String.format(categoryUrl +allCities.get(i)+ PAGE_URL_CONSTANT, 1);
+                System.out.println(cities);
+                String firstPageUrl = String.format(categoryUrl +cities.get(i)+ PAGE_URL_CONSTANT, 1);
 
                 Document firstPage = Jsoup.connect(firstPageUrl).get();
                 if (firstPage != null) {
@@ -81,7 +80,7 @@ public class ItemsUpdateTask implements Runnable {
     private int getTotalPages(Document firstPage) {
         Element itemElement = firstPage.selectFirst(".catalog-container");
         if (itemElement != null) {
-            Integer numberofPages = null;
+            Integer numberofPages = 0;
 
             String quantity = itemElement.select(".product-quantity").text();
             Integer amountOfProducts;
