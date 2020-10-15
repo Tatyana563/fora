@@ -106,13 +106,14 @@ public class SectionParser {
         Elements cityElements = page.select(".js-city-select-radio");
         for (Element cityElement : cityElements) {
             String citySuffix = cityElement.attr("data-href").replace("/", "");
+            String cityName = cityElement.select(".js-city-select-radio + label > a").text();
+
             if (!cityRepository.existsByUrlSuffix(citySuffix)) {
-               cityRepository.save(new City(null,citySuffix));
+                cityRepository.save(new City(cityName, citySuffix));
             }
-
         }
-    }
 
+    }
     private void processGroupWithCategories(Section section, Element currentGroup, List<Element> categories) {
         if (currentGroup == null) {
             return;

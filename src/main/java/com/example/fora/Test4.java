@@ -10,7 +10,7 @@ public class Test4 {
     }
 
     private static String getProductExternalId(String itemUrl) {
-        //TODO: parse url to get externalId
+
     //  String line=  "https:fora.kz/catalog/smartfony-plansety/smartfony/samsung-galaxy-a01-core-red_616857/karaganda";
         int index1 = itemUrl.lastIndexOf("_");
         int index2 = itemUrl.lastIndexOf("/");

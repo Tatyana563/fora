@@ -48,23 +48,20 @@ public class ItemsUpdateTask implements Runnable {
     @Override
     public void run() {
         try {
-          //  itemRepository.resetItemAvailability(category);
+
             String categoryUrl = category.getUrl();
             //TODO: iterate over cities
             //TODO: categoryUrl + city + page params
 
             for(int i=0;i<cities.size();i++) {
-
-                System.out.println(cities);
-                String firstPageUrl = String.format(categoryUrl +cities.get(i)+ PAGE_URL_CONSTANT, 1);
-
+                String firstPageUrl = String.format(categoryUrl +"/"+cities.get(i)+ PAGE_URL_CONSTANT, 1);
                 Document firstPage = Jsoup.connect(firstPageUrl).get();
                 if (firstPage != null) {
                     int totalPages = getTotalPages(firstPage);
                     parseItems(firstPage);
                     for (int j = 2; j <= totalPages; j++) {
                         LOG.info("Получаем список товаров ({}) - страница {}", category.getName(), i);
-                        parseItems(Jsoup.connect(String.format(categoryUrl + PAGE_URL_CONSTANT, i)).get());
+                        parseItems(Jsoup.connect(String.format(categoryUrl+"/"+cities.get(i) + PAGE_URL_CONSTANT, i)).get());
 
                     }
                 }
@@ -123,7 +120,7 @@ public class ItemsUpdateTask implements Runnable {
         String itemUrl = itemLink.absUrl("href");
         String itemText = itemLink.text();
 
-        String externalCode = getProductExternalId(itemUrl);
+        String externalCode = URLUtil.extractExternalIdFromUrl(itemUrl);
         if (externalCode != null && externalCode.isEmpty()) {
             LOG.warn("Продукт без кода: {}\n{}", itemText, itemUrl);
             return;
@@ -155,15 +152,9 @@ public class ItemsUpdateTask implements Runnable {
         //TODO: save cityItemPrice (get by city and item, or create new one)
     }
 
-    private String getProductExternalId(String itemUrl) {
-        //TODO: parse url to get externalId
-        //https://fora.kz/catalog/smartfony-plansety/smartfony/samsung-galaxy-a01-core-red_616857/karaganda
-        int index1 = itemUrl.lastIndexOf("_");
-        int index2 = itemUrl.lastIndexOf("/");
-        String substring = itemUrl.substring(index1 + 1, index2);
-        return substring;
+//    private String getProductExternalId(String itemUrl) {
+//        //TODO: parse url to get externalId
 
-    }
 
 }
 

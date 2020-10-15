@@ -17,7 +17,15 @@ public final class URLUtil {
     }
 
     public static String extractExternalIdFromUrl(String rawUrl) {
-        //TODO: implement
-        return null;
+
+
+            //  String line=  "https:fora.kz/catalog/smartfony-plansety/smartfony/samsung-galaxy-a01-core-red_616857/karaganda";
+            int index1 = rawUrl.lastIndexOf("_");
+            int index2 = rawUrl.lastIndexOf("/");
+            String substring = rawUrl.substring(index1+1,index2);
+            System.out.println(substring);
+            return substring;
+        }
+
     }
-}
+

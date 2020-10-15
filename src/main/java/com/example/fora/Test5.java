@@ -10,9 +10,9 @@ import java.io.IOException;
 public class Test5 {
     public static void main(String[] args) throws IOException {
         Document page = Jsoup.connect("https://fora.kz/").get();
-        Elements sectionElements = page.select(".js-city-select-radio");
+        Elements sectionElements = page.select(".js-city-select-radio + label > a");
         for (Element itemElement : sectionElements) {
-            String cityUrl = itemElement.attr("data-href").replace("/", "");
+            String city = itemElement.text();
 
         }
     }
