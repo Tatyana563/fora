@@ -14,8 +14,8 @@ import java.util.Optional;
 public interface ItemRepository extends JpaRepository<Item,Integer> {
     Optional<Item> findOneByExternalId(String externalId);
 
-    @Modifying
-    @Transactional
-    @Query("update Item item set item.available=false where item.category=:category")
-    void resetItemAvailability(Category category);
+//    @Modifying
+//    @Transactional
+//    @Query("update Item item set item.available=false where item.category=:category")
+//    void resetItemAvailability(Category category);
 }

@@ -4,6 +4,7 @@ package com.example.fora;
 import com.example.fora.model.Category;
 import com.example.fora.model.City;
 import com.example.fora.model.Item;
+import com.example.fora.repository.CityRepository;
 import com.example.fora.repository.ItemRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,6 +12,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,7 +29,8 @@ public class ItemsUpdateTask implements Runnable {
     //TODO: make decision single task -> single city or List.
     private final List<City> cities;
     private final CountDownLatch latch;
-
+    @Autowired
+    private CityRepository cityRepository;
 
     private static final String PAGE_URL_CONSTANT = "?sort=views&page=%d";
     private static final Integer NUMBER_OF_PRODUCTS_PER_PAGE = 18;
@@ -46,23 +49,29 @@ public class ItemsUpdateTask implements Runnable {
     @Override
     public void run() {
         try {
-            itemRepository.resetItemAvailability(category);
+          //  itemRepository.resetItemAvailability(category);
             String categoryUrl = category.getUrl();
             //TODO: iterate over cities
             //TODO: categoryUrl + city + page params
-            String firstPageUrl = String.format(categoryUrl + PAGE_URL_CONSTANT, 1);
+        List<String> allCities= cityRepository.getAllCities();
+            for(int i=0;i<allCities.size();i++) {
 
-            Document firstPage = Jsoup.connect(firstPageUrl).get();
-            if (firstPage != null) {
-                int totalPages = getTotalPages(firstPage);
-                parseItems(firstPage);
-                for (int i = 2; i <= totalPages; i++) {
-                    LOG.info("Получаем список товаров ({}) - страница {}", category.getName(), i);
-                    parseItems(Jsoup.connect(String.format(categoryUrl + PAGE_URL_CONSTANT, i)).get());
 
+                String firstPageUrl = String.format(categoryUrl +allCities.get(i)+ PAGE_URL_CONSTANT, 1);
+
+                Document firstPage = Jsoup.connect(firstPageUrl).get();
+                if (firstPage != null) {
+                    int totalPages = getTotalPages(firstPage);
+                    parseItems(firstPage);
+                    for (int j = 2; j <= totalPages; j++) {
+                        LOG.info("Получаем список товаров ({}) - страница {}", category.getName(), i);
+                        parseItems(Jsoup.connect(String.format(categoryUrl + PAGE_URL_CONSTANT, i)).get());
+
+                    }
                 }
             }
-        } catch (IOException e) {
+
+        }catch (IOException e) {
             e.printStackTrace();
         } finally {
             latch.countDown();
@@ -71,7 +80,7 @@ public class ItemsUpdateTask implements Runnable {
 
     private int getTotalPages(Document firstPage) {
         Element itemElement = firstPage.selectFirst(".catalog-container");
-        if(itemElement!=null) {
+        if (itemElement != null) {
             Integer numberofPages = null;
 
             String quantity = itemElement.select(".product-quantity").text();
@@ -102,8 +111,7 @@ public class ItemsUpdateTask implements Runnable {
         for (Element itemElement : itemElements) {
             try {
                 parseSingleItem(itemElement);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 LOG.error("Не удалось распарсить продукт", e);
             }
 
@@ -131,12 +139,12 @@ public class ItemsUpdateTask implements Runnable {
             item.setCode(itemCode);
         }
 
-        String itemPrice = itemElement.selectFirst(".price").text();
-        Matcher priceMatcher = PRICE_PATTERN.matcher(itemPrice);
-        if (priceMatcher.find()) {
-            String price = priceMatcher.group(0).replaceAll("\\s*", "");
-            item.setPrice(Double.valueOf(price));
-        }
+//        String itemPrice = itemElement.selectFirst(".price").text();
+//        Matcher priceMatcher = PRICE_PATTERN.matcher(itemPrice);
+//        if (priceMatcher.find()) {
+//            String price = priceMatcher.group(0).replaceAll("\\s*", "");
+//            item.setPrice(Double.valueOf(price));
+//        }
 
         item.setModel(itemText);
         item.setImage(itemPhoto);
@@ -151,9 +159,13 @@ public class ItemsUpdateTask implements Runnable {
     private String getProductExternalId(String itemUrl) {
         //TODO: parse url to get externalId
         //https://fora.kz/catalog/smartfony-plansety/smartfony/samsung-galaxy-a01-core-red_616857/karaganda
+        int index1 = itemUrl.lastIndexOf("_");
+        int index2 = itemUrl.lastIndexOf("/");
+        String substring = itemUrl.substring(index1 + 1, index2);
+        return substring;
 
-        return null;
     }
+
 }
 
 

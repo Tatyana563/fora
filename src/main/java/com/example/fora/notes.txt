@@ -3,3 +3,7 @@ how can I sort - more expensive, cheaper, popularity (?sort=views)
 https://fora.kz/catalog/noutbuki-komputery/komputery/noutbuki/aktobe
 pages -error
 sections categories logic
+
+
+PROBLEMS:
+1 cant parse city name, strange url

@@ -4,10 +4,7 @@ import com.example.fora.model.Category;
 import com.example.fora.model.City;
 import com.example.fora.model.MainGroup;
 import com.example.fora.model.Section;
-import com.example.fora.repository.CategoryRepository;
-import com.example.fora.repository.ItemRepository;
-import com.example.fora.repository.MainGroupRepository;
-import com.example.fora.repository.SectionRepository;
+import com.example.fora.repository.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -58,6 +55,8 @@ public class SectionParser {
     private MainGroupRepository mainGroupRepository;
     @Autowired
     private ItemRepository itemRepository;
+    @Autowired
+    private CityRepository cityRepository;
 
 
     @Scheduled(fixedDelay = ONE_WEEK_MS)
@@ -101,6 +100,16 @@ public class SectionParser {
 
     private void parseCities(Document page) {
         //TODO: parse and save cities
+
+        Elements cityElements = page.select(".js-city-select-radio");
+        for (Element cityElement : cityElements) {
+            String citySuffix = cityElement.attr("data-href").replace("/", "");
+          //  String cityname =
+            if (!cityRepository.existsByUrlSuffix(citySuffix)) {
+               cityRepository.save(new City(null,citySuffix));
+            }
+
+        }
     }
 
     private void processGroupWithCategories(Section section, Element currentGroup, List<Element> categories) {
