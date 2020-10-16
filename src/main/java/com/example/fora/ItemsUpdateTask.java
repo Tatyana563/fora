@@ -61,7 +61,8 @@ public class ItemsUpdateTask implements Runnable {
                     parseItems(firstPage);
                     for (int j = 2; j <= totalPages; j++) {
                         LOG.info("Получаем список товаров ({}) - страница {}", category.getName(), i);
-                        parseItems(Jsoup.connect(String.format(categoryUrl+"/"+cities.get(i) + PAGE_URL_CONSTANT, i)).get());
+                      //  parseItems(Jsoup.connect(String.format(categoryUrl+"/"+cities.get(i) + PAGE_URL_CONSTANT, i)).get());
+                        parseItems(Jsoup.connect(String.format("categoryUrl%h%s%s%d","/",cities.get(i),PAGE_URL_CONSTANT, i)).get());
 
                     }
                 }

@@ -8,7 +8,8 @@ public final class URLUtil {
 
     public static String removeCityFromUrl(String rawUrl) {
         //TODO: implement
-        return null;
+        int index = rawUrl.lastIndexOf("/");
+      return rawUrl.substring(0,index);
     }
 
     public static String extractCityFromUrl(String rawUrl) {

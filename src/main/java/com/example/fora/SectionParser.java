@@ -123,8 +123,7 @@ public class SectionParser {
 
         String groupUrl = groupLink.absUrl("href");
         String groupText = groupLink.text();
-        int index = groupUrl.lastIndexOf("/");
-        String groupUrlWithoutCity= groupUrl.substring(0,index);
+        String groupUrlWithoutCity=URLUtil.removeCityFromUrl(groupUrl);
         LOG.info("Группа  {}", groupText);
         MainGroup group = mainGroupRepository.findOneByUrl(groupUrlWithoutCity)
                 .orElseGet(() -> mainGroupRepository.save(new MainGroup(groupText, groupUrlWithoutCity, section)));
@@ -138,8 +137,7 @@ public class SectionParser {
                 //TODO:remove city suffix from url (lastIndexOf('/'))
 
                 String categoryUrl = categoryLink.absUrl("href");
-                int index2 = categoryUrl.lastIndexOf("/");
-                String categoryUrlWithoutCity= categoryUrl.substring(0,index2);
+                String categoryUrlWithoutCity= URLUtil.removeCityFromUrl(categoryUrl);
                 String categoryText = categoryLink.text();
                 LOG.info("\tКатегория  {}", categoryText);
                 if (!categoryRepository.existsByUrl(categoryUrlWithoutCity)) {
