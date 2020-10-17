@@ -11,6 +11,14 @@ public class City {
     private String name;
     private String urlSuffix;
 
+    public City() {
+    }
+
+    public City(String name, String urlSuffix) {
+        this.name = name;
+        this.urlSuffix = urlSuffix;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -35,8 +43,4 @@ public class City {
         this.urlSuffix = urlSuffix;
     }
 
-    public City(String name, String urlSuffix) {
-        this.name = name;
-        this.urlSuffix = urlSuffix;
-    }
 }

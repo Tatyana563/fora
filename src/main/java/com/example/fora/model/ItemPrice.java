@@ -11,6 +11,7 @@ public class ItemPrice {
 
     @ManyToOne
     private City city;
+
     @ManyToOne
     private Item item;
 

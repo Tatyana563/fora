@@ -5,6 +5,7 @@ import com.example.fora.model.City;
 import com.example.fora.model.MainGroup;
 import com.example.fora.model.Section;
 import com.example.fora.repository.*;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,9 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -32,7 +31,7 @@ public class SectionParser {
     private static final Logger LOG = LoggerFactory.getLogger(SectionParser.class);
 
     private static final Set<String> SECTIONS = Set.of("Ноутбуки, компьютеры", "Комплектующие", "Оргтехника", "Смартфоны, планшеты",
-            "Телевизоры, аудио, видео","Техника для дома", "Техника для кухни", "Фото и видео");
+            "Телевизоры, аудио, видео", "Техника для дома", "Техника для кухни", "Фото и видео");
 
     private static final String URL = "https://fora.kz/";
 
@@ -56,6 +55,8 @@ public class SectionParser {
     @Autowired
     private ItemRepository itemRepository;
     @Autowired
+    private ItemPriceRepository itemPriceRepository;
+    @Autowired
     private CityRepository cityRepository;
 
 
@@ -73,7 +74,7 @@ public class SectionParser {
                 //TODO:remove city suffix from url (lastIndexOf('/'))
                 String sectionUrl = sectionElementLink.absUrl("href");
                 int index = sectionUrl.lastIndexOf("/");
-                String sectionUrlWithoutCity= sectionUrl.substring(0,index);
+                String sectionUrlWithoutCity = sectionUrl.substring(0, index);
                 Section section = sectionRepository.findOneByUrl(sectionUrlWithoutCity)
                         .orElseGet(() -> sectionRepository.save(new Section(text, sectionUrlWithoutCity)));
                 LOG.info("Получили {}, ищем группы...", text);
@@ -101,12 +102,14 @@ public class SectionParser {
     }
 
     private void parseCities(Document page) {
-        //TODO: parse and save cities
-
         Elements cityElements = page.select(".js-city-select-radio");
         for (Element cityElement : cityElements) {
             String citySuffix = cityElement.attr("data-href").replace("/", "");
-            String cityName = cityElement.select(".js-city-select-radio + label > a").text();
+            String cityName = cityElement.parent().selectFirst("label > a").text();
+//        Elements cityElements = page.select(".js-city-select-radio");
+//        for (Element cityElement : cityElements) {
+//            String citySuffix = cityElement.attr("data-href").replace("/", "");
+//            String cityName = cityElement.parent().selectFirst(".js-city-select-radio+label > a").text();
 
             if (!cityRepository.existsByUrlSuffix(citySuffix)) {
                 cityRepository.save(new City(cityName, citySuffix));
@@ -114,16 +117,16 @@ public class SectionParser {
         }
 
     }
+
     private void processGroupWithCategories(Section section, Element currentGroup, List<Element> categories) {
         if (currentGroup == null) {
             return;
         }
         Element groupLink = currentGroup.selectFirst(">a");
-        //TODO:remove city suffix from url (lastIndexOf('/'))
 
         String groupUrl = groupLink.absUrl("href");
         String groupText = groupLink.text();
-        String groupUrlWithoutCity=URLUtil.removeCityFromUrl(groupUrl);
+        String groupUrlWithoutCity = URLUtil.removeCityFromUrl(groupUrl);
         LOG.info("Группа  {}", groupText);
         MainGroup group = mainGroupRepository.findOneByUrl(groupUrlWithoutCity)
                 .orElseGet(() -> mainGroupRepository.save(new MainGroup(groupText, groupUrlWithoutCity, section)));
@@ -134,10 +137,8 @@ public class SectionParser {
         } else {
             for (Element categoryElement : categories) {
                 Element categoryLink = categoryElement.selectFirst(">a");
-                //TODO:remove city suffix from url (lastIndexOf('/'))
-
                 String categoryUrl = categoryLink.absUrl("href");
-                String categoryUrlWithoutCity= URLUtil.removeCityFromUrl(categoryUrl);
+                String categoryUrlWithoutCity = URLUtil.removeCityFromUrl(categoryUrl);
                 String categoryText = categoryLink.text();
                 LOG.info("\tКатегория  {}", categoryText);
                 if (!categoryRepository.existsByUrl(categoryUrlWithoutCity)) {
@@ -151,7 +152,7 @@ public class SectionParser {
 
     @Scheduled(initialDelay = 1200, fixedDelay = ONE_WEEK_MS)
     @Transactional
-    public void getAdditionalArticleInfo() throws InterruptedException {
+    public void getAdditionalArticleInfo() throws InterruptedException, IOException {
         LOG.info("Получаем дополнитульную информацию о товарe...");
         ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
         int page = 0;
@@ -160,16 +161,30 @@ public class SectionParser {
         // 1. offset + limit
         // 2. page + pageSize
         //   offset = page * pageSize;  limit = pageSize;
-        List<String> cities = cityRepository.getAllCities();
-        while (!(categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize))).isEmpty()) {
-            LOG.info("Получили из базы {} категорий", categories.size());
-            CountDownLatch latch = new CountDownLatch(categories.size());
-            for (Category category : categories) {
-                executorService.execute(new ItemsUpdateTask(itemRepository, category, cities, latch));
+        List<City> cities = cityRepository.findAll();
+//        categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize)
+        for (City city : cities) {
+            LOG.info("-------------------------------------");
+            LOG.info("Получаем списки товаров для {}", city.getUrlSuffix());
+            LOG.info("-------------------------------------");
+            String urlWithCity = URL + city.getUrlSuffix();
+            Connection.Response response = Jsoup.connect(urlWithCity).method(Connection.Method.GET).execute();
+            Map<String, String> cookies = response.cookies();
+            while (!(categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize))).isEmpty()){
+                LOG.info("Получили из базы {} категорий", categories.size());
+                CountDownLatch latch = new CountDownLatch(categories.size());
+                for (Category category : categories) {
+                    executorService.execute(new ItemsUpdateTask(itemRepository,
+                                                                itemPriceRepository,
+                                                                category,
+                                                                city,
+                                                                cookies,
+                                                                latch));
+                }
+                LOG.info("Задачи запущены, ожидаем завершения выполнения...");
+                latch.await();
+                LOG.info("Задачи выполнены, следующая порция...");
             }
-            LOG.info("Задачи запущены, ожидаем завершения выполнения...");
-            latch.await();
-            LOG.info("Задачи выполнены, следующая порция...");
         }
         executorService.shutdown();
     }

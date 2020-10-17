@@ -14,6 +14,7 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
     boolean existsByUrl(String url);
+
     @Query("from Category as c ORDER BY c.id ASC")
     List<Category> getChunk(PageRequest pageable);
 }
