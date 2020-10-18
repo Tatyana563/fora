@@ -73,8 +73,7 @@ public class SectionParser {
                 LOG.info("Получаем {}...", text);
                 //TODO:remove city suffix from url (lastIndexOf('/'))
                 String sectionUrl = sectionElementLink.absUrl("href");
-                int index = sectionUrl.lastIndexOf("/");
-                String sectionUrlWithoutCity = sectionUrl.substring(0, index);
+                String sectionUrlWithoutCity = URLUtil.removeCityFromUrl(sectionUrl);
                 Section section = sectionRepository.findOneByUrl(sectionUrlWithoutCity)
                         .orElseGet(() -> sectionRepository.save(new Section(text, sectionUrlWithoutCity)));
                 LOG.info("Получили {}, ищем группы...", text);
@@ -163,29 +162,41 @@ public class SectionParser {
         //   offset = page * pageSize;  limit = pageSize;
         List<City> cities = cityRepository.findAll();
 //        categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize)
-        for (City city : cities) {
-            LOG.info("-------------------------------------");
-            LOG.info("Получаем списки товаров для {}", city.getUrlSuffix());
-            LOG.info("-------------------------------------");
-            String urlWithCity = URL + city.getUrlSuffix();
-            Connection.Response response = Jsoup.connect(urlWithCity).method(Connection.Method.GET).execute();
-            Map<String, String> cookies = response.cookies();
-            while (!(categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize))).isEmpty()){
-                LOG.info("Получили из базы {} категорий", categories.size());
-                CountDownLatch latch = new CountDownLatch(categories.size());
-                for (Category category : categories) {
-                    executorService.execute(new ItemsUpdateTask(itemRepository,
-                                                                itemPriceRepository,
-                                                                category,
-                                                                city,
-                                                                cookies,
-                                                                latch));
-                }
-                LOG.info("Задачи запущены, ожидаем завершения выполнения...");
-                latch.await();
-                LOG.info("Задачи выполнены, следующая порция...");
-            }
-        }
+       for(int i=0;i<cities.size();i++) {
+           LOG.info("-------------------------------------");
+           LOG.info("Получаем списки товаров для {}", cities.get(i).getUrlSuffix());
+           LOG.info("-------------------------------------");
+           String urlWithCity = URL + cities.get(i).getUrlSuffix();
+           Connection.Response response = Jsoup.connect(urlWithCity).method(Connection.Method.GET).execute();
+           Map<String, String> cookies = response.cookies();
+           while (!(categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize))).isEmpty()) {
+               LOG.info("Получили из базы {} категорий", categories.size());
+               CountDownLatch latch = new CountDownLatch(categories.size());
+               for (Category category : categories) {
+                   executorService.execute(new ItemsUpdateTask(itemRepository,
+                           itemPriceRepository,
+                           category,
+                           cities.get(i),
+                           cookies,
+                           latch));
+
+               }
+
+               LOG.info("Задачи запущены, ожидаем завершения выполнения...");
+               latch.await();
+               LOG.info("Задачи выполнены, следующая порция...");
+
+           }
+           page=0;
+           //disconnect;
+           try{
+           if ((cities.get(i + 1))!=null) {
+               Jsoup.connect(URL + cities.get(i + 1).getUrlSuffix()).method(Connection.Method.GET).execute();}
+           }
+           catch(Exception e){
+
+           };
+       }
         executorService.shutdown();
     }
 }

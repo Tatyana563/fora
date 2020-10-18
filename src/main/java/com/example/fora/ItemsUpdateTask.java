@@ -7,6 +7,7 @@ import com.example.fora.model.Item;
 import com.example.fora.model.ItemPrice;
 import com.example.fora.repository.ItemPriceRepository;
 import com.example.fora.repository.ItemRepository;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.regex.Matcher;
@@ -61,9 +63,12 @@ public class ItemsUpdateTask implements Runnable {
                 parseItems(firstPage);
                 for (int pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
                     LOG.info("Получаем список товаров ({}) - страница {}", category.getName(), pageNumber);
-                    parseItems(Jsoup.connect(String.format(pageUrlFormat, pageNumber)).get());
+                    Document connect = Jsoup.connect(String.format(pageUrlFormat, pageNumber)).get();
+                    parseItems(connect);
+
                 }
             }
+
         } catch (IOException ioException) {
             LOG.error("Не получилось распарсить категорию", ioException);
         } finally {
@@ -100,10 +105,10 @@ public class ItemsUpdateTask implements Runnable {
 
 
     private void parseItems(Document itemsPage) {
-        if (!isValidCity(itemsPage)) {
-            LOG.error("Используется другой город {}", itemsPage.selectFirst("a.current-city").text());
-            return;
-        }
+//        if (!isValidCity(itemsPage)) {
+//            LOG.error("Используется другой город {}", itemsPage.selectFirst("a.current-city").text());
+//            return;
+ //       }
 
         Elements itemElements = itemsPage.select(".catalog-list-item:not(.injectable-banner)");
 
@@ -146,7 +151,8 @@ public class ItemsUpdateTask implements Runnable {
         item.setImage(itemPhoto);
         item.setDescription(itemDescription);
         //TODO: remove city from url
-        item.setUrl(itemUrl);
+        String itemUrlWithoutCity = URLUtil.removeCityFromUrl(itemUrl);
+        item.setUrl(itemUrlWithoutCity);
         item.setCategory(category);
         itemRepository.save(item);
 
