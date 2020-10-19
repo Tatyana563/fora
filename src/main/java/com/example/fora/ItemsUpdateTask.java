@@ -54,17 +54,26 @@ public class ItemsUpdateTask implements Runnable {
             LOG.warn("Начиначем обработку категории '{}'", category.getName());
             String pageUrlFormat = category.getUrl() + PAGE_URL_FORMAT;
             String firstPageUrl = String.format(pageUrlFormat, 1);
-            Document firstPage = Jsoup.connect(firstPageUrl)
-                    .cookies(cookies)
-                    .timeout(ONE_MINUTE_MS)
-                    .get();
+            Connection.Response result = null;
+            synchronized (cookies) {
+                result = Jsoup.connect(firstPageUrl)
+                        .cookies(cookies)
+                        .timeout(ONE_MINUTE_MS)
+                        .execute();
+                cookies.putAll(result.cookies());
+            }
+
+            Document firstPage = result.parse();
             if (firstPage != null) {
                 int totalPages = getTotalPages(firstPage);
                 parseItems(firstPage);
                 for (int pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
                     LOG.info("Получаем список товаров ({}) - страница {}", category.getName(), pageNumber);
-                    Document connect = Jsoup.connect(String.format(pageUrlFormat, pageNumber)).get();
-                    parseItems(connect);
+                    synchronized (cookies) {
+                        result = Jsoup.connect(String.format(pageUrlFormat, pageNumber)).cookies(cookies).timeout(ONE_MINUTE_MS).execute();
+                        cookies.putAll(result.cookies());
+                    }
+                    parseItems(result.parse());
 
                 }
             }
@@ -105,10 +114,10 @@ public class ItemsUpdateTask implements Runnable {
 
 
     private void parseItems(Document itemsPage) {
-//        if (!isValidCity(itemsPage)) {
-//            LOG.error("Используется другой город {}", itemsPage.selectFirst("a.current-city").text());
-//            return;
- //       }
+        if (!isValidCity(itemsPage)) {
+            LOG.error("Используется другой город {}", itemsPage.selectFirst("a.current-city").text());
+            return;
+        }
 
         Elements itemElements = itemsPage.select(".catalog-list-item:not(.injectable-banner)");
 

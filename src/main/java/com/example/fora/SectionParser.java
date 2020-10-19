@@ -154,7 +154,7 @@ public class SectionParser {
     public void getAdditionalArticleInfo() throws InterruptedException, IOException {
         LOG.info("Получаем дополнитульную информацию о товарe...");
         ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
-        int page = 0;
+
         List<Category> categories;
 
         // 1. offset + limit
@@ -162,41 +162,46 @@ public class SectionParser {
         //   offset = page * pageSize;  limit = pageSize;
         List<City> cities = cityRepository.findAll();
 //        categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize)
-       for(int i=0;i<cities.size();i++) {
-           LOG.info("-------------------------------------");
-           LOG.info("Получаем списки товаров для {}", cities.get(i).getUrlSuffix());
-           LOG.info("-------------------------------------");
-           String urlWithCity = URL + cities.get(i).getUrlSuffix();
-           Connection.Response response = Jsoup.connect(urlWithCity).method(Connection.Method.GET).execute();
-           Map<String, String> cookies = response.cookies();
-           while (!(categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize))).isEmpty()) {
-               LOG.info("Получили из базы {} категорий", categories.size());
-               CountDownLatch latch = new CountDownLatch(categories.size());
-               for (Category category : categories) {
-                   executorService.execute(new ItemsUpdateTask(itemRepository,
-                           itemPriceRepository,
-                           category,
-                           cities.get(i),
-                           cookies,
-                           latch));
+        Map<String, String> cookies = new HashMap<>();
+        for (int i = 0; i < cities.size(); i++) {
+            LOG.info("-------------------------------------");
+            LOG.info("Получаем списки товаров для {}", cities.get(i).getUrlSuffix());
+            LOG.info("-------------------------------------");
+            String urlWithCity = URL + cities.get(i).getUrlSuffix();
+            Connection.Response response = Jsoup.connect(urlWithCity)
+                    .cookies(cookies)
+                    .method(Connection.Method.GET)
+                    .execute();
+            cookies.putAll(response.cookies());
+            int page = 0;
+            while (!(categories = categoryRepository.getChunk(PageRequest.of(page++, chunkSize))).isEmpty()) {
+                LOG.info("Получили из базы {} категорий", categories.size());
+                CountDownLatch latch = new CountDownLatch(categories.size());
+                for (Category category : categories) {
+                    executorService.execute(new ItemsUpdateTask(itemRepository,
+                            itemPriceRepository,
+                            category,
+                            cities.get(i),
+                            cookies,
+                            latch));
 
-               }
+                }
 
-               LOG.info("Задачи запущены, ожидаем завершения выполнения...");
-               latch.await();
-               LOG.info("Задачи выполнены, следующая порция...");
+                LOG.info("Задачи запущены, ожидаем завершения выполнения...");
+                latch.await();
+                LOG.info("Задачи выполнены, следующая порция...");
 
-           }
-           page=0;
-           //disconnect;
-           try{
-           if ((cities.get(i + 1))!=null) {
-               Jsoup.connect(URL + cities.get(i + 1).getUrlSuffix()).method(Connection.Method.GET).execute();}
-           }
-           catch(Exception e){
+            }
 
-           };
-       }
+            //disconnect;
+//           try{
+//           if ((cities.get(i + 1))!=null) {
+//               Jsoup.connect(URL + cities.get(i + 1).getUrlSuffix()).method(Connection.Method.GET).execute();}
+//           }
+//           catch(Exception e){
+//
+//           };
+        }
         executorService.shutdown();
     }
 }
