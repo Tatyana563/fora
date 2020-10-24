@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -30,8 +29,19 @@ import java.util.concurrent.Executors;
 public class SectionParser {
     private static final Logger LOG = LoggerFactory.getLogger(SectionParser.class);
 
-    private static final Set<String> SECTIONS = Set.of("Ноутбуки, компьютеры", "Комплектующие", "Оргтехника", "Смартфоны, планшеты",
-            "Телевизоры, аудио, видео", "Техника для дома", "Техника для кухни", "Фото и видео");
+    private static final Set<String> SECTIONS;
+    static {
+        Set<String> sections = new HashSet<>();
+        sections.add("Ноутбуки, компьютеры");
+        sections.add("Комплектующие");
+        sections.add("Оргтехника");
+        sections.add("Смартфоны, планшеты");
+        sections.add("Телевизоры, аудио, видео");
+        sections.add("Техника для дома");
+        sections.add("Техника для кухни");
+        sections.add("Фото и видео");
+        SECTIONS = Collections.unmodifiableSet(sections);
+    }
 
     private static final String URL = "https://fora.kz/";
 

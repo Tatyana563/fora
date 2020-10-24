@@ -1,0 +1,605 @@
+2020-10-22 21:34:00.248  INFO 11359 --- [main] com.example.fora.ForaApplication         : Starting ForaApplication on support-desktop with PID 11359 (/home/tetiana.petrenko/IdeaProjects/fora/target/classes started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-22 21:34:00.251  INFO 11359 --- [main] com.example.fora.ForaApplication         : The following profiles are active: local
+2020-10-22 21:34:01.026  INFO 11359 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-22 21:34:01.116  INFO 11359 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 78ms. Found 6 JPA repository interfaces.
+2020-10-22 21:34:01.527  INFO 11359 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-22 21:34:01.542  INFO 11359 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-22 21:34:01.583  INFO 11359 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-22 21:34:01.635  INFO 11359 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-22 21:34:01.735  INFO 11359 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-22 21:34:01.752  INFO 11359 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-22 21:34:01.837  INFO 11359 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-10-22 21:34:02.237  INFO 11359 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-10-22 21:34:02.248  INFO 11359 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-22 21:34:02.935  INFO 11359 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-22 21:34:02.940  INFO 11359 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-22 21:34:03.336  INFO 11359 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-22 21:34:03.346  INFO 11359 --- [main] com.example.fora.ForaApplication         : Started ForaApplication in 3.584 seconds (JVM running for 5.028)
+2020-10-22 21:34:04.041  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили главную страницу, ищем секции...
+2020-10-22 21:34:04.050  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем Комплектующие...
+2020-10-22 21:34:04.088  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили Комплектующие, ищем группы...
+2020-10-22 21:34:04.089  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Блоки питания
+2020-10-22 21:34:04.124  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Видеокарты
+2020-10-22 21:34:04.130  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Дисководы
+2020-10-22 21:34:04.132  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Оптические приводы
+2020-10-22 21:34:04.135  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Жесткие диски
+2020-10-22 21:34:04.138  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  HDD диски
+2020-10-22 21:34:04.140  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  SSD диски
+2020-10-22 21:34:04.143  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Корпуса для системных блоков
+2020-10-22 21:34:04.148  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Материнские платы
+2020-10-22 21:34:04.154  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Оперативная память
+2020-10-22 21:34:04.161  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Процессоры
+2020-10-22 21:34:04.166  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Устройства охлаждения
+2020-10-22 21:34:04.172  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем Ноутбуки, компьютеры...
+2020-10-22 21:34:04.174  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили Ноутбуки, компьютеры, ищем группы...
+2020-10-22 21:34:04.175  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аксессуары для ноутбуков
+2020-10-22 21:34:04.177  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Зарядные устройства для ноутбука
+2020-10-22 21:34:04.180  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Подставки охлаждения для ноутбука
+2020-10-22 21:34:04.183  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Сумки для ноутбуков
+2020-10-22 21:34:04.185  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Доступ к интернету
+2020-10-22 21:34:04.187  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  ADSL модемы
+2020-10-22 21:34:04.190  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Компьютерные кресла
+2020-10-22 21:34:04.196  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Компьютеры
+2020-10-22 21:34:04.198  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Моноблоки
+2020-10-22 21:34:04.200  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Ноутбуки
+2020-10-22 21:34:04.203  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Системные блоки
+2020-10-22 21:34:04.205  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Носители информации
+2020-10-22 21:34:04.207  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  DAT кассеты
+2020-10-22 21:34:04.209  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Внешние накопители
+2020-10-22 21:34:04.211  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Карты памяти
+2020-10-22 21:34:04.213  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Флэшки
+2020-10-22 21:34:04.215  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Програмное обеспечение
+2020-10-22 21:34:04.218  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Microsoft Office
+2020-10-22 21:34:04.219  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Microsoft Windows
+2020-10-22 21:34:04.221  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Антивирусы
+2020-10-22 21:34:04.224  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Родительский контроль
+2020-10-22 21:34:04.226  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Сетевое оборудование
+2020-10-22 21:34:04.230  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Антенны
+2020-10-22 21:34:04.232  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Беспроводные Wi-Fi адаптеры
+2020-10-22 21:34:04.235  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Усилители Wi-fi
+2020-10-22 21:34:04.237  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Коммутаторы
+2020-10-22 21:34:04.240  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Маршрутизаторы
+2020-10-22 21:34:04.242  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Принт серверы
+2020-10-22 21:34:04.245  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Сетевые карты
+2020-10-22 21:34:04.249  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Сплиттеры
+2020-10-22 21:34:04.251  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Точки доступа
+2020-10-22 21:34:04.254  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Трансиверы
+2020-10-22 21:34:04.256  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Медиаконвертеры
+2020-10-22 21:34:04.259  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Mesh-системы
+2020-10-22 21:34:04.261  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Патч Корды
+2020-10-22 21:34:04.265  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем Оргтехника...
+2020-10-22 21:34:04.267  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили Оргтехника, ищем группы...
+2020-10-22 21:34:04.268  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аксессуары
+2020-10-22 21:34:04.271  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Кабели
+2020-10-22 21:34:04.273  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Переходники
+2020-10-22 21:34:04.276  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Калькуляторы
+2020-10-22 21:34:04.285  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Компьютерное оборудование
+2020-10-22 21:34:04.289  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  USB хабы
+2020-10-22 21:34:04.293  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  WEB камеры
+2020-10-22 21:34:04.295  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Графические планшеты
+2020-10-22 21:34:04.298  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Звуковые колонки
+2020-10-22 21:34:04.300  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Клавиатуры
+2020-10-22 21:34:04.304  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Коврики для мыши
+2020-10-22 21:34:04.308  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Мониторы
+2020-10-22 21:34:04.311  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Мыши
+2020-10-22 21:34:04.314  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Презентеры
+2020-10-22 21:34:04.318  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  МФУ
+2020-10-22 21:34:04.325  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Принтеры
+2020-10-22 21:34:04.331  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Сканеры
+2020-10-22 21:34:04.336  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Расходные материалы
+2020-10-22 21:34:04.337  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Картриджи
+2020-10-22 21:34:04.339  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Термопаста
+2020-10-22 21:34:04.341  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Тонеры
+2020-10-22 21:34:04.342  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Термопленки
+2020-10-22 21:34:04.344  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Бумаги для печати
+2020-10-22 21:34:04.346  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Фотобумага
+2020-10-22 21:34:04.348  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чернила
+2020-10-22 21:34:04.349  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Ракели
+2020-10-22 21:34:04.351  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Резиновые Валы
+2020-10-22 21:34:04.353  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Фотобарабаны
+2020-10-22 21:34:04.355  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Элементы питания
+2020-10-22 21:34:04.357  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Электропитание
+2020-10-22 21:34:04.359  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Источники бесперебойного питания
+2020-10-22 21:34:04.361  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Сетевые фильтры
+2020-10-22 21:34:04.362  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Тройники
+2020-10-22 21:34:04.364  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Стабилизаторы напряжения
+2020-10-22 21:34:04.366  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  3D ручки
+2020-10-22 21:34:04.370  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Шредеры
+2020-10-22 21:34:04.376  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем Смартфоны, планшеты...
+2020-10-22 21:34:04.378  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили Смартфоны, планшеты, ищем группы...
+2020-10-22 21:34:04.379  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аксессуары для планшетов
+2020-10-22 21:34:04.381  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чехлы для планшетов
+2020-10-22 21:34:04.385  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чехлы для электронных книг
+2020-10-22 21:34:04.388  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аксессуары для телефонов
+2020-10-22 21:34:04.391  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Bluetooth гарнитуры
+2020-10-22 21:34:04.394  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Адаптеры ip-телефонии
+2020-10-22 21:34:04.396  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Беспроводные зарядки
+2020-10-22 21:34:04.398  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Внешние аккумуляторы
+2020-10-22 21:34:04.401  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Док-станции
+2020-10-22 21:34:04.403  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Защитные пленки для смартфонов
+2020-10-22 21:34:04.406  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Зарядные устройства
+2020-10-22 21:34:04.408  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Интерфейсные кабели
+2020-10-22 21:34:04.413  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Моноподы
+2020-10-22 21:34:04.417  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чехлы для смартфонов
+2020-10-22 21:34:04.420  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Кабели для смартфонов
+2020-10-22 21:34:04.423  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Пакеты связи
+2020-10-22 21:34:04.433  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Домашние телефоны
+2020-10-22 21:34:04.436  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Проводные телефоны
+2020-10-22 21:34:04.439  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Радиотелефоны
+2020-10-22 21:34:04.441  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Офисные телефоны
+2020-10-22 21:34:04.444  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  IP телефоны
+2020-10-22 21:34:04.446  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Плата расширения для АТС
+2020-10-22 21:34:04.449  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Сетевые телефоны
+2020-10-22 21:34:04.453  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  SIP телефоны
+2020-10-22 21:34:04.456  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Смартфоны
+2020-10-22 21:34:04.474  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Мобильные телефоны
+2020-10-22 21:34:04.480  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Планшеты
+2020-10-22 21:34:04.486  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Умные гаджеты
+2020-10-22 21:34:04.489  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Детские Smart Часы
+2020-10-22 21:34:04.491  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Фитнес-браслеты
+2020-10-22 21:34:04.494  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Smart часы
+2020-10-22 21:34:04.496  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Ремешки для Smart часов
+2020-10-22 21:34:04.498  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Электронные книги
+2020-10-22 21:34:04.505  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем Телевизоры, аудио, видео...
+2020-10-22 21:34:04.507  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили Телевизоры, аудио, видео, ищем группы...
+2020-10-22 21:34:04.508  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  TV тюнеры
+2020-10-22 21:34:04.514  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аксессуары для телевизоров, аудио, видео
+2020-10-22 21:34:04.516  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Smart хабы
+2020-10-22 21:34:04.519  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Клавиатуры для Smart TV
+2020-10-22 21:34:04.521  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Комплекты для ТВ
+2020-10-22 21:34:04.524  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Кронштейны
+2020-10-22 21:34:04.527  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Рамки для TV
+2020-10-22 21:34:04.538  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Пульты для телевизоров
+2020-10-22 21:34:04.541  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Телевизионные антенны
+2020-10-22 21:34:04.543  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аудиотехника
+2020-10-22 21:34:04.546  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Аудиосистемы
+2020-10-22 21:34:04.549  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Радиоприемники
+2020-10-22 21:34:04.551  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Видеотехника
+2020-10-22 21:34:04.554  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Домашние кинотеатры
+2020-10-22 21:34:04.556  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Медиаплееры
+2020-10-22 21:34:04.559  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Наушники
+2020-10-22 21:34:04.565  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Стойки для аппаратуры
+2020-10-22 21:34:04.576  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Телевизоры
+2020-10-22 21:34:04.583  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Чистящие средства
+2020-10-22 21:34:04.585  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чистящие наборы
+2020-10-22 21:34:04.591  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чистящие салфетки
+2020-10-22 21:34:04.596  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чистящие средства
+2020-10-22 21:34:04.605  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем Техника для дома...
+2020-10-22 21:34:04.610  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили Техника для дома, ищем группы...
+2020-10-22 21:34:04.612  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аксессуары
+2020-10-22 21:34:04.614  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Аксессуары для пылесосов
+2020-10-22 21:34:04.621  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Антивибрационные подставки
+2020-10-22 21:34:04.627  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Водонагреватели и бойлеры
+2020-10-22 21:34:04.636  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Бойлеры
+2020-10-22 21:34:04.640  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Проточные водонагреватели
+2020-10-22 21:34:04.642  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Климатическая техника
+2020-10-22 21:34:04.652  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Термогигрометры
+2020-10-22 21:34:04.655  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Вентиляторы
+2020-10-22 21:34:04.657  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Кондиционеры
+2020-10-22 21:34:04.660  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Котлы газовые
+2020-10-22 21:34:04.662  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Обогреватели
+2020-10-22 21:34:04.671  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Очистители воздуха
+2020-10-22 21:34:04.676  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Тепловентиляторы
+2020-10-22 21:34:04.679  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Увлажнители воздуха
+2020-10-22 21:34:04.682  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Лестницы и стремянки
+2020-10-22 21:34:04.688  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Освещение
+2020-10-22 21:34:04.691  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Лампы
+2020-10-22 21:34:04.693  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Светильники
+2020-10-22 21:34:04.696  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Фонари
+2020-10-22 21:34:04.698  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Стиральные машины
+2020-10-22 21:34:04.709  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Расходные материалы
+2020-10-22 21:34:04.712  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Поглотители запаха
+2020-10-22 21:34:04.714  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Фильтры
+2020-10-22 21:34:04.716  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чистящие средства
+2020-10-22 21:34:04.719  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Уборка дома
+2020-10-22 21:34:04.721  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Пароочистители
+2020-10-22 21:34:04.724  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Пылесосы
+2020-10-22 21:34:04.728  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Мойки высокого давления
+2020-10-22 21:34:04.747  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Умный дом
+2020-10-22 21:34:04.755  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Датчики
+2020-10-22 21:34:04.763  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Камеры видеонаблюдения
+2020-10-22 21:34:04.765  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Умные розетки
+2020-10-22 21:34:04.768  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Уход за одеждой
+2020-10-22 21:34:04.779  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Аксессуары для утюгов
+2020-10-22 21:34:04.783  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Аксессуары для швейных машин
+2020-10-22 21:34:04.787  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Гладильные доски
+2020-10-22 21:34:04.791  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Машинки для удаления катышков
+2020-10-22 21:34:04.793  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Отпариватели
+2020-10-22 21:34:04.795  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Сушилки для белья
+2020-10-22 21:34:04.798  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Утюги
+2020-10-22 21:34:04.800  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Швейные машины
+2020-10-22 21:34:04.803  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Электрические сушилки для обуви
+2020-10-22 21:34:04.805  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем Техника для кухни...
+2020-10-22 21:34:04.808  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили Техника для кухни, ищем группы...
+2020-10-22 21:34:04.808  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аксессуары
+2020-10-22 21:34:04.811  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Вакууматоры
+2020-10-22 21:34:04.813  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Рулоны вакуумной пленки
+2020-10-22 21:34:04.819  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Кухонные весы
+2020-10-22 21:34:04.826  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Продукты
+2020-10-22 21:34:04.835  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Измельчение и смешивание
+2020-10-22 21:34:04.842  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Блендеры
+2020-10-22 21:34:04.845  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Измельчители
+2020-10-22 21:34:04.847  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Кухонные комбайны
+2020-10-22 21:34:04.851  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Миксеры
+2020-10-22 21:34:04.854  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Овощерезки
+2020-10-22 21:34:04.856  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Электромясорубки
+2020-10-22 21:34:04.858  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Крупная бытовая техника
+2020-10-22 21:34:04.861  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Встраиваемые газовые поверхности
+2020-10-22 21:34:04.863  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Встраиваемые духовки
+2020-10-22 21:34:04.865  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Встраиваемые поверхности
+2020-10-22 21:34:04.867  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Встраиваемые электрические духовки
+2020-10-22 21:34:04.869  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Вытяжки
+2020-10-22 21:34:04.872  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Газовые плиты
+2020-10-22 21:34:04.874  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Комбинированные плиты
+2020-10-22 21:34:04.877  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Морозильные камеры
+2020-10-22 21:34:04.879  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Посудомоечные машины
+2020-10-22 21:34:04.881  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Холодильники
+2020-10-22 21:34:04.883  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Электрические плиты
+2020-10-22 21:34:04.885  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Приготовление блюд
+2020-10-22 21:34:04.888  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Аэрогрили
+2020-10-22 21:34:04.890  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Вафельницы
+2020-10-22 21:34:04.892  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Грили
+2020-10-22 21:34:04.895  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Йогуртницы
+2020-10-22 21:34:04.897  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Медленноварки
+2020-10-22 21:34:04.899  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Микроволновые печи
+2020-10-22 21:34:04.901  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Мультиварки
+2020-10-22 21:34:04.904  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Сушилки для фруктов и овощей
+2020-10-22 21:34:04.906  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Су-вид
+2020-10-22 21:34:04.909  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Орешницы
+2020-10-22 21:34:04.911  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Рисоварки
+2020-10-22 21:34:04.914  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Скороварки
+2020-10-22 21:34:04.916  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Сэндвичницы
+2020-10-22 21:34:04.918  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Тостеры
+2020-10-22 21:34:04.922  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Фритюрницы
+2020-10-22 21:34:04.925  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Хлебопечки
+2020-10-22 21:34:04.928  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Электропечи
+2020-10-22 21:34:04.930  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Электроплитки
+2020-10-22 21:34:04.933  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Приготовление кофе
+2020-10-22 21:34:04.937  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Капучинаторы
+2020-10-22 21:34:04.939  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Кофеварки
+2020-10-22 21:34:04.943  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Кофемашины
+2020-10-22 21:34:04.945  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Кофемолки
+2020-10-22 21:34:04.948  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Приготовление напитков
+2020-10-22 21:34:04.950  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Соковыжималки
+2020-10-22 21:34:04.953  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Термопоты
+2020-10-22 21:34:04.955  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Фильтры-кувшины
+2020-10-22 21:34:04.957  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Электрочайники
+2020-10-22 21:34:04.960  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Кронштейны для СВЧ
+2020-10-22 21:34:04.965  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Расходные материалы
+2020-10-22 21:34:04.968  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Картриджи для фильтров воды
+2020-10-22 21:34:04.970  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем Фото и видео...
+2020-10-22 21:34:04.983  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили Фото и видео, ищем группы...
+2020-10-22 21:34:04.984  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Аксессуары для фото и видео
+2020-10-22 21:34:04.986  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Аккумуляторы для фото-видео аппаратуры
+2020-10-22 21:34:04.988  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Крепления
+2020-10-22 21:34:04.992  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Объективы
+2020-10-22 21:34:04.995  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Фотовспышки
+2020-10-22 21:34:05.003  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Чехлы для фото-видео аппаратуры
+2020-10-22 21:34:05.006  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Экраны
+2020-10-22 21:34:05.014  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Видеокамеры
+2020-10-22 21:34:05.021  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Видеоняни
+2020-10-22 21:34:05.030  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Проекторы
+2020-10-22 21:34:05.036  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Фотоаппараты
+2020-10-22 21:34:05.043  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : 	Категория  Цифровые фотоаппараты
+2020-10-22 21:34:05.046  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Группа  Экшн-камеры
+2020-10-22 21:34:05.096  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем дополнитульную информацию о товарe...
+2020-10-22 21:34:05.105  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : -------------------------------------
+2020-10-22 21:34:05.105  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получаем списки товаров для aktobe
+2020-10-22 21:34:05.105  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : -------------------------------------
+2020-10-22 21:34:05.336  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Получили из базы 10 категорий
+2020-10-22 21:34:05.340  WARN 11359 --- [pool-1-thread-1] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'Блоки питания'
+2020-10-22 21:34:05.342  WARN 11359 --- [pool-1-thread-2] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'Видеокарты'
+2020-10-22 21:34:05.342  WARN 11359 --- [pool-1-thread-3] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'Оптические приводы'
+2020-10-22 21:34:05.343  WARN 11359 --- [pool-1-thread-4] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'HDD диски'
+2020-10-22 21:34:05.344  WARN 11359 --- [pool-1-thread-5] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'SSD диски'
+2020-10-22 21:34:05.344  WARN 11359 --- [pool-1-thread-6] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'Корпуса для системных блоков'
+2020-10-22 21:34:05.344  WARN 11359 --- [pool-1-thread-7] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'Материнские платы'
+2020-10-22 21:34:05.345  WARN 11359 --- [pool-1-thread-8] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'Оперативная память'
+2020-10-22 21:34:05.345  WARN 11359 --- [pool-1-thread-9] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'Процессоры'
+2020-10-22 21:34:05.345  WARN 11359 --- [pool-1-thread-10] com.example.fora.ItemsUpdateTask         : Начиначем обработку категории 'Устройства охлаждения'
+2020-10-22 21:34:05.345  INFO 11359 --- [scheduling-1] com.example.fora.SectionParser           : Задачи запущены, ожидаем завершения выполнения...
+2020-10-22 21:34:06.292  INFO 11359 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-22 21:34:06.294  INFO 11359 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-22 21:34:06.295  INFO 11359 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-22 21:34:06.296  INFO 11359 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-10-22 21:34:06.297 ERROR 11359 --- [scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(AbstractQueuedSynchronizer.java:1047)
+	at java.base/java.util.concurrent.CountDownLatch.await(CountDownLatch.java:232)
+	at com.example.fora.SectionParser.getAdditionalArticleInfo(SectionParser.java:191)
+	at com.example.fora.SectionParser$$FastClassBySpringCGLIB$$7148381f.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:367)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:118)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
+	at com.example.fora.SectionParser$$EnhancerBySpringCGLIB$$7d910937.getAdditionalArticleInfo(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+
+2020-10-22 21:34:06.297 ERROR 11359 --- [pool-1-thread-1] com.example.fora.ItemsUpdateTask         : Не удалось распарсить продукт
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'entityManagerFactory': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:624)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.detectPersistenceExceptionTranslators(PersistenceExceptionTranslationInterceptor.java:168)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:151)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:149)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:95)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212)
+	at com.sun.proxy.$Proxy87.findOneByExternalId(Unknown Source)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:205)
+	at com.sun.proxy.$Proxy53.findOneByExternalId(Unknown Source)
+	at com.example.fora.ItemsUpdateTask.parseSingleItem(ItemsUpdateTask.java:150)
+	at com.example.fora.ItemsUpdateTask.parseItems(ItemsUpdateTask.java:126)
+	at com.example.fora.ItemsUpdateTask.run(ItemsUpdateTask.java:69)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+
+2020-10-22 21:34:06.299 ERROR 11359 --- [pool-1-thread-1] com.example.fora.ItemsUpdateTask         : Не удалось распарсить продукт
+
+org.springframework.beans.factory.BeanCreationNotAllowedException: Error creating bean with name 'itemRepository': Singleton bean creation not allowed while singletons of this factory are in destruction (Do not request a bean from a BeanFactory in a destroy method implementation!)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:220)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1307)
+	at org.springframework.context.annotation.ContextAnnotationAutowireCandidateResolver$1.getTarget(ContextAnnotationAutowireCandidateResolver.java:95)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:192)
+	at com.sun.proxy.$Proxy53.findOneByExternalId(Unknown Source)
+	at com.example.fora.ItemsUpdateTask.parseSingleItem(ItemsUpdateTask.java:150)
+	at com.example.fora.ItemsUpdateTask.parseItems(ItemsUpdateTask.java:126)
+	at com.example.fora.ItemsUpdateTask.run(ItemsUpdateTask.java:69)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+
+2020-10-22 21:34:06.299  WARN 11359 --- [pool-1-thread-1] com.example.fora.ItemsUpdateTask         : Обработка категории 'Блоки питания' завершена
+2020-10-22 21:34:06.310  INFO 11359 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-10-24 18:15:59.489  INFO 30476 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 30476 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 18:15:59.496  INFO 30476 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 18:16:00.088  INFO 30476 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 18:16:00.194  INFO 30476 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94ms. Found 6 JPA repository interfaces.
+2020-10-24 18:16:00.885  INFO 30476 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 18:16:00.923  INFO 30476 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 18:16:01.000  INFO 30476 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 18:16:01.078  INFO 30476 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 18:16:01.303  INFO 30476 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 18:16:01.326  INFO 30476 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 18:16:01.463  INFO 30476 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 18:16:01.855  INFO 30476 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 18:16:01.875  INFO 30476 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 18:16:03.027  INFO 30476 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 18:16:03.038  INFO 30476 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 18:16:03.673  INFO 30476 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 18:16:03.684  INFO 30476 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 4.61 seconds (JVM running for 6.17)
+2020-10-24 18:16:03.928  INFO 30476 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 18:16:03.933  INFO 30476 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 18:16:03.934  INFO 30476 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 18:16:03.936  INFO 30476 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 18:16:03.966  INFO 30476 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:19:59.017  INFO 18861 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 18861 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:19:59.024  INFO 18861 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:19:59.799  INFO 18861 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:19:59.941  INFO 18861 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 127ms. Found 6 JPA repository interfaces.
+2020-10-24 21:20:00.871  INFO 18861 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:20:00.917  INFO 18861 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:20:01.038  INFO 18861 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:20:01.222  INFO 18861 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:20:01.499  INFO 18861 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:20:01.570  INFO 18861 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:20:01.766  INFO 18861 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:20:02.278  INFO 18861 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:20:02.298  INFO 18861 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:20:03.877  INFO 18861 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:20:03.887  INFO 18861 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:20:04.880  INFO 18861 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:20:04.901  INFO 18861 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 6.359 seconds (JVM running for 8.202)
+2020-10-24 21:20:05.341  INFO 18861 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:20:05.345  INFO 18861 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:20:05.346  INFO 18861 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:20:05.346  INFO 18861 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:20:05.386  INFO 18861 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:20:40.837  INFO 19062 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 19062 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:20:40.843  INFO 19062 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:20:41.601  INFO 19062 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:20:41.737  INFO 19062 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 121ms. Found 6 JPA repository interfaces.
+2020-10-24 21:20:42.670  INFO 19062 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:20:42.718  INFO 19062 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:20:42.807  INFO 19062 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:20:42.982  INFO 19062 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:20:43.325  INFO 19062 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:20:43.409  INFO 19062 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:20:43.615  INFO 19062 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:20:44.254  INFO 19062 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:20:44.280  INFO 19062 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:20:46.018  INFO 19062 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:20:46.026  INFO 19062 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:20:46.975  INFO 19062 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:20:46.990  INFO 19062 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 6.705 seconds (JVM running for 8.856)
+2020-10-24 21:20:47.419  INFO 19062 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:20:47.426  INFO 19062 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:20:47.426  INFO 19062 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:20:47.428  INFO 19062 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:20:47.442  INFO 19062 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:21:44.127  INFO 19246 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 19246 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:21:44.134  INFO 19246 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:21:44.991  INFO 19246 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:21:45.130  INFO 19246 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125ms. Found 6 JPA repository interfaces.
+2020-10-24 21:21:46.131  INFO 19246 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:21:46.170  INFO 19246 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:21:46.281  INFO 19246 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:21:46.409  INFO 19246 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:21:46.716  INFO 19246 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:21:46.760  INFO 19246 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:21:46.955  INFO 19246 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:21:47.501  INFO 19246 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:21:47.536  INFO 19246 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:21:48.973  INFO 19246 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:21:48.982  INFO 19246 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:21:50.065  INFO 19246 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:21:50.101  INFO 19246 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 6.415 seconds (JVM running for 8.228)
+2020-10-24 21:21:50.543  INFO 19246 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:21:50.550  INFO 19246 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:21:50.552  INFO 19246 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:21:50.554  INFO 19246 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:21:50.578  INFO 19246 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:23:30.110  INFO 19543 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 19543 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:23:30.116  INFO 19543 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:23:30.779  INFO 19543 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:23:30.889  INFO 19543 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99ms. Found 6 JPA repository interfaces.
+2020-10-24 21:23:31.629  INFO 19543 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:23:31.669  INFO 19543 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:23:31.741  INFO 19543 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:23:31.837  INFO 19543 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:23:32.090  INFO 19543 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:23:32.120  INFO 19543 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:23:32.253  INFO 19543 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:23:32.737  INFO 19543 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:23:32.770  INFO 19543 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:23:34.115  INFO 19543 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:23:34.124  INFO 19543 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:23:34.772  INFO 19543 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:23:34.784  INFO 19543 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 5.112 seconds (JVM running for 6.878)
+2020-10-24 21:23:35.080  INFO 19543 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:23:35.084  INFO 19543 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:23:35.085  INFO 19543 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:23:35.087  INFO 19543 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:23:35.111  INFO 19543 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:25:35.875  INFO 19770 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 19770 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:25:35.881  INFO 19770 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:25:36.588  INFO 19770 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:25:36.685  INFO 19770 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86ms. Found 6 JPA repository interfaces.
+2020-10-24 21:25:37.403  INFO 19770 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:25:37.441  INFO 19770 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:25:37.522  INFO 19770 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:25:37.617  INFO 19770 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:25:37.833  INFO 19770 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:25:37.881  INFO 19770 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:25:38.054  INFO 19770 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:25:38.519  INFO 19770 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:25:38.540  INFO 19770 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:25:39.992  INFO 19770 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:25:40.001  INFO 19770 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:25:40.862  INFO 19770 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:25:40.874  INFO 19770 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 5.419 seconds (JVM running for 7.091)
+2020-10-24 21:25:41.319  INFO 19770 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:25:41.322  INFO 19770 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:25:41.322  INFO 19770 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:25:41.328  INFO 19770 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:25:41.380  INFO 19770 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:27:29.183  INFO 20050 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 20050 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:27:29.189  INFO 20050 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:27:29.889  INFO 20050 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:27:30.037  INFO 20050 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 128ms. Found 6 JPA repository interfaces.
+2020-10-24 21:27:30.906  INFO 20050 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:27:30.963  INFO 20050 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:27:31.036  INFO 20050 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:27:31.134  INFO 20050 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:27:31.331  INFO 20050 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:27:31.360  INFO 20050 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:27:31.553  INFO 20050 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:27:32.084  INFO 20050 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:27:32.101  INFO 20050 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:27:33.261  INFO 20050 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:27:33.277  INFO 20050 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:27:34.257  INFO 20050 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:27:34.272  INFO 20050 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 5.531 seconds (JVM running for 7.247)
+2020-10-24 21:27:34.598  INFO 20050 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:27:34.605  INFO 20050 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:27:34.609  INFO 20050 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:27:34.611  INFO 20050 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:27:34.649  INFO 20050 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:39:13.822  INFO 21201 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 21201 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:39:13.827  INFO 21201 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:39:14.429  INFO 21201 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:39:14.584  INFO 21201 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 136ms. Found 6 JPA repository interfaces.
+2020-10-24 21:39:15.378  INFO 21201 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:39:15.422  INFO 21201 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:39:15.540  INFO 21201 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:39:15.729  INFO 21201 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:39:16.045  INFO 21201 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:39:16.066  INFO 21201 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:39:16.409  INFO 21201 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:39:16.686  INFO 21201 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:39:16.707  INFO 21201 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:39:17.968  INFO 21201 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:39:17.978  INFO 21201 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:39:18.970  INFO 21201 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:39:19.000  INFO 21201 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 5.588 seconds (JVM running for 7.075)
+2020-10-24 21:39:19.296  INFO 21201 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:39:19.302  INFO 21201 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:39:19.303  INFO 21201 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:39:19.306  INFO 21201 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:39:19.358  INFO 21201 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:40:25.413  INFO 21439 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 21439 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:40:25.421  INFO 21439 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:40:26.158  INFO 21439 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:40:26.278  INFO 21439 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 111ms. Found 6 JPA repository interfaces.
+2020-10-24 21:40:27.136  INFO 21439 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:40:27.192  INFO 21439 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:40:27.336  INFO 21439 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:40:27.527  INFO 21439 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:40:27.754  INFO 21439 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:40:27.859  INFO 21439 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:40:28.039  INFO 21439 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:40:28.451  INFO 21439 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:40:28.475  INFO 21439 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:40:29.811  INFO 21439 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:40:29.820  INFO 21439 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:40:30.725  INFO 21439 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:40:30.742  INFO 21439 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 5.88 seconds (JVM running for 7.723)
+2020-10-24 21:40:31.092  INFO 21439 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:40:31.105  INFO 21439 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:40:31.107  INFO 21439 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:40:31.113  INFO 21439 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:40:31.193  INFO 21439 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-10-24 21:42:15.888  INFO 21667 --- [main] c.e.f.ForaApplicationTests               : Starting ForaApplicationTests on support-desktop with PID 21667 (started by tetiana.petrenko in /home/tetiana.petrenko/IdeaProjects/fora)
+2020-10-24 21:42:15.893  INFO 21667 --- [main] c.e.f.ForaApplicationTests               : No active profile set, falling back to default profiles: default
+2020-10-24 21:42:16.480  INFO 21667 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-10-24 21:42:16.636  INFO 21667 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 141ms. Found 6 JPA repository interfaces.
+2020-10-24 21:42:17.389  INFO 21667 --- [main] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:42:17.436  INFO 21667 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-10-24 21:42:17.557  INFO 21667 --- [task-1] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-10-24 21:42:17.667  INFO 21667 --- [task-1] o.h.Version                              : HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-10-24 21:42:17.940  INFO 21667 --- [task-1] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-10-24 21:42:17.972  INFO 21667 --- [main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2020-10-24 21:42:18.254  INFO 21667 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-10-24 21:42:18.555  INFO 21667 --- [task-1] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-10-24 21:42:18.583  INFO 21667 --- [task-1] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-10-24 21:42:19.793  INFO 21667 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-10-24 21:42:19.804  INFO 21667 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:42:20.740  INFO 21667 --- [main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2020-10-24 21:42:20.752  INFO 21667 --- [main] c.e.f.ForaApplicationTests               : Started ForaApplicationTests in 5.26 seconds (JVM running for 6.807)
+2020-10-24 21:42:21.098  INFO 21667 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-10-24 21:42:21.101  INFO 21667 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-10-24 21:42:21.102  INFO 21667 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 21:42:21.112  INFO 21667 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-10-24 21:42:21.241  INFO 21667 --- [SpringContextShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
